@@ -1,19 +1,21 @@
+package extdotcomgame;
+
 import java.util.*;
 
 public class DotCom {
-    private ArrayList<String> locationCells;
+    protected ArrayList<String> locationCells;
     private String name;
 
     public void setLocationCells(ArrayList<String> loc) {
         locationCells = (ArrayList<String>) loc.clone();
-        for(String a : locationCells){
-            System.out.println(" " + a);
-        }
-        System.out.println("");
     }
 
     public void setName(String n) {
         name = n;
+    }
+
+    public String getName(){
+        return name;
     }
 
     public String checkYourself(String userInput) {

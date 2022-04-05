@@ -1,7 +1,10 @@
+package extdotcomgame;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class GameHelper {
     private static final String alphabet = "abcdefg";
@@ -25,6 +28,18 @@ public class GameHelper {
         }
         return inputLine.toLowerCase();                     // 2차원 보드이기 때문에 2글자를 입력 받아야 한다
         // 좌표 입력을 알파벳으로 받기 때문에 모두 소문자로 변환
+    }
+
+    private Random generator = new Random(10);
+
+    public String getUserInputRandom(String prompt) {
+        String inputLine = null;
+        int row = (int) (generator.nextDouble() * gridLength);
+        int col = (int) (generator.nextDouble() * gridLength);
+
+        String temp = String.valueOf(alphabet.charAt(row));
+        temp = temp.concat(Integer.toString(col));
+        return temp;
     }
 
     // comSize 만큼의 연속된 셀 찾기

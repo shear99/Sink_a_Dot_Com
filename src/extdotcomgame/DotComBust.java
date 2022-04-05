@@ -1,3 +1,5 @@
+package extdotcomgame;
+
 import java.util.*;
 
 public class DotComBust {
@@ -7,25 +9,32 @@ public class DotComBust {
 
     // 게임 설정
     public void setUpGame() {
-        DotCom one = new DotCom();
+
+        ShortDotCom one = new ShortDotCom();
         one.setName("Pets.com");
-        DotCom two = new DotCom();
+        LongDotCom two = new LongDotCom();
         two.setName("eToys.com");
-        DotCom three = new DotCom();
+        HeavyDotCom three = new HeavyDotCom();
         three.setName("Go2.com");
+
         dotComsList.add(one);
         dotComsList.add(two);
         dotComsList.add(three);
-        for (DotCom dotComToSet : dotComsList) {
-            ArrayList<String> newLocation = helper.placeDotCom(3);      // 3칸 넣을 수 있는 공간을 찾아주는 메소드
-            dotComToSet.setLocationCells(newLocation);                  // 배치 메소드
-        }
+
+
+        ArrayList<String> newLocation;
+        newLocation = helper.placeDotCom(one.size());
+        one.setLocationCells(newLocation);
+        newLocation = helper.placeDotCom(two.size());
+        two.setLocationCells(newLocation);
+        newLocation = helper.placeDotCom(three.size());
+        three.setLocationCells(newLocation);
     }
 
     // 게임 진행
     public void startPlaying() {
-        while (!dotComsList.isEmpty()) {                                  // 모든 DotCom 파괴될 때까지 진행
-            String userGuess = helper.getUserInput("Enter a guess");    // 게이머에게 input 받기
+        while (!dotComsList.isEmpty()) {                                  // 모든 extdotcomgame.DotCom 파괴될 때까지 진행
+            String userGuess = helper.getUserInputRandom("Enter a guess");    // 체크할때는 랜덤값으로 입력하기 위해 자동생성
             this.checkUserGuess(userGuess);                             // 입력받은 userGuess 가지고 추리
         }
         this.finishGame();
@@ -38,16 +47,19 @@ public class DotComBust {
         for (int x = 0; x < dotComsList.size(); x++) {
             result = dotComsList.get(x).checkYourself(userGuess);       // x 자리의 객체 꺼내오기
             if (result.equals("hit")) {
+                result += " " + dotComsList.get(x).getName();
                 break;
             } else if (result.equals("kill")) {
+                result += " " + dotComsList.get(x).getName();
                 dotComsList.remove(x);
                 break;
             }
         }
-        System.out.println(result);
+        if (!result.equals("miss"))
+            System.out.println(result);
     }
 
-    // 모든 DotCom 격파됨
+    // 모든 extdotcomgame.DotCom 격파됨
     private void finishGame() {
         System.out.println("All Dot Coms are dead!");
         if (numOfGuesses <= 18) {                                        // 총 추리횟수가 18번 이하이면 칭찬해주기
@@ -59,14 +71,7 @@ public class DotComBust {
         }
     }
 
-    // main 부분
-    public class DotComBustLauncher {
-        public static void main(String[] args) {
-            DotComBust game = new DotComBust();
-            game.setUpGame();
-            game.startPlaying();
-        }
-    }
+
 
 
 }
