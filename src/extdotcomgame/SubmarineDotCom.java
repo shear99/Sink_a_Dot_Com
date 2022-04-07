@@ -1,27 +1,17 @@
 package extdotcomgame;
 
-import java.util.*;
+public class SubmarineDotCom extends DotCom{
+    private boolean underwater = true;
+    private int tryguess = 0;
 
-public class DotCom {
-    protected ArrayList<String> locationCells;
-    public String name;
-
-    public void setLocationCells(ArrayList<String> loc) {
-        locationCells = (ArrayList<String>) loc.clone();
-    }
-
-    public void setName(String n) {
-        name = n;
-    }
-
-    public String getName() {
-        return name;
+    public int size() {
+        return 3;
     }
 
     public String checkYourself(String userInput) {
         String result = "miss";
         int index = locationCells.indexOf(userInput);
-        if (index >= 0) {
+        if (index >= 0 && underwater == false) {
             locationCells.remove(index);
             if (locationCells.isEmpty()) {
                 result = "kill";
@@ -30,6 +20,13 @@ public class DotCom {
                 result = "hit";
             }
         }
+        tryguess++;
+        System.out.println(name + " is underwater!");
+        if(tryguess > 10){
+            underwater = false;
+            System.out.println(name + " is overwater!");
+        }
         return result;
     }
+
 }

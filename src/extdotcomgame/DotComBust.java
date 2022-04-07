@@ -16,10 +16,13 @@ public class DotComBust {
         two.setName("eToys.com");
         HeavyDotCom three = new HeavyDotCom();
         three.setName("Go2.com");
+        SubmarineDotCom four = new SubmarineDotCom();
+        four.setName("Dolphin.com");
 
         dotComsList.add(one);
         dotComsList.add(two);
         dotComsList.add(three);
+        dotComsList.add(four);
 
 
         ArrayList<String> newLocation;
@@ -29,6 +32,8 @@ public class DotComBust {
         two.setLocationCells(newLocation);
         newLocation = helper.placeDotCom(three.size());
         three.setLocationCells(newLocation);
+        newLocation = helper.placeDotCom(four.size());
+        four.setLocationCells(newLocation);
     }
 
     // 게임 진행
