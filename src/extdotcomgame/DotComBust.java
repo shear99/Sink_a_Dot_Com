@@ -1,5 +1,6 @@
 package extdotcomgame;
 
+import dotcomobservers.DamageRate;
 import dotcomobservers.SurvivingCells;
 
 import java.util.*;
@@ -25,6 +26,15 @@ public class DotComBust extends DotCom {
         two.attach(new SurvivingCells(two));
         three.attach(new SurvivingCells(three));
         //four.attach(new SurvivingCells(four));
+
+        one.attach(new DamageRate(one));
+        two.attach(new DamageRate(two));
+        three.attach(new DamageRate(three));
+        //four.attach(new DamageRate(four));
+
+        one.setSize(one.size());
+        two.setSize(two.size());
+        three.setSize(three.size());
 
 
         dotComsList.add(one);

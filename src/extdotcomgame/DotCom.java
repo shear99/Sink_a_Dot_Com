@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class DotCom extends Observable {
     protected ArrayList<String> locationCells;
     public String name;
+    private int dotcomsize;
 
     public void setLocationCells(ArrayList<String> loc) {
         locationCells = (ArrayList<String>) loc.clone();
@@ -20,9 +21,18 @@ public class DotCom extends Observable {
         return name;
     }
 
-    public ArrayList<String> getState(){
-        return (ArrayList<String>)locationCells.clone();
+    public ArrayList<String> getState() {
+        return (ArrayList<String>) locationCells.clone();
     }
+
+    public void setSize(int s) {
+        dotcomsize = s;
+    }
+
+    public int getSize() {
+        return dotcomsize;
+    }
+
 
     public String checkYourself(String userInput) {
         String result = "miss";

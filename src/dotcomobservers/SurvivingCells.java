@@ -13,7 +13,7 @@ public class SurvivingCells implements Observer {
 
     public void update() {
         ArrayList<String> state = subject.getState();
-        System.out.println("Surviving cells in " + subject.getName() + ": ");
+        System.out.print("Surviving cells in " + subject.getName() + ": ");
         for (String cell : state) {
             System.out.print(cell + " ");
         }
