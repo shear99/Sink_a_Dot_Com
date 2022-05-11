@@ -1,8 +1,10 @@
 package extdotcomgame;
 
-import java.util.*;
+import dotcomobservers.Observable;
 
-public class DotCom {
+import java.util.ArrayList;
+
+public class DotCom extends Observable {
     protected ArrayList<String> locationCells;
     public String name;
 
@@ -18,6 +20,10 @@ public class DotCom {
         return name;
     }
 
+    public ArrayList<String> getState(){
+        return (ArrayList<String>)locationCells.clone();
+    }
+
     public String checkYourself(String userInput) {
         String result = "miss";
         int index = locationCells.indexOf(userInput);
@@ -29,6 +35,7 @@ public class DotCom {
             } else {
                 result = "hit";
             }
+            this.notifyObservers();
         }
         return result;
     }

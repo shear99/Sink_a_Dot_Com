@@ -1,8 +1,10 @@
 package extdotcomgame;
 
+import dotcomobservers.SurvivingCells;
+
 import java.util.*;
 
-public class DotComBust {
+public class DotComBust extends DotCom {
     private GameHelper helper = new GameHelper();
     private ArrayList<DotCom> dotComsList = new ArrayList<DotCom>();
     private int numOfGuesses = 0;
@@ -16,13 +18,19 @@ public class DotComBust {
         two.setName("eToys.com");
         HeavyDotCom three = new HeavyDotCom();
         three.setName("Go2.com");
-        SubmarineDotCom four = new SubmarineDotCom();
-        four.setName("Dolphin.com");
+        //SubmarineDotCom four = new SubmarineDotCom();
+        //four.setName("Dolphin.com");
+
+        one.attach(new SurvivingCells(one));
+        two.attach(new SurvivingCells(two));
+        three.attach(new SurvivingCells(three));
+        //four.attach(new SurvivingCells(four));
+
 
         dotComsList.add(one);
         dotComsList.add(two);
         dotComsList.add(three);
-        dotComsList.add(four);
+        //dotComsList.add(four);
 
 
         ArrayList<String> newLocation;
@@ -32,8 +40,8 @@ public class DotComBust {
         two.setLocationCells(newLocation);
         newLocation = helper.placeDotCom(three.size());
         three.setLocationCells(newLocation);
-        newLocation = helper.placeDotCom(four.size());
-        four.setLocationCells(newLocation);
+        //newLocation = helper.placeDotCom(four.size());
+        //four.setLocationCells(newLocation);
     }
 
     // 게임 진행

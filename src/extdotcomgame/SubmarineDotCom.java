@@ -1,7 +1,7 @@
 package extdotcomgame;
 
-public class SubmarineDotCom extends DotCom{
-    private boolean underwater = true;
+public class SubmarineDotCom extends DotCom {
+    private boolean underwater = false;
     private int tryguess = 0;
 
     public int size() {
@@ -11,6 +11,7 @@ public class SubmarineDotCom extends DotCom{
     public String checkYourself(String userInput) {
         String result = "miss";
         int index = locationCells.indexOf(userInput);
+
         if (index >= 0 && underwater == false) {
             locationCells.remove(index);
             if (locationCells.isEmpty()) {
@@ -19,13 +20,16 @@ public class SubmarineDotCom extends DotCom{
             } else {
                 result = "hit";
             }
+            underwater = true;
+        } else if(index >= 0 && underwater == true){
+            System.out.println(name + " underwater = true");
         }
-        tryguess++;
-        System.out.println(name + " is underwater!");
-        if(tryguess > 10){
+
+        if (result == "miss"){
             underwater = false;
-            System.out.println(name + " is overwater!");
         }
+
+        tryguess++;
         return result;
     }
 
